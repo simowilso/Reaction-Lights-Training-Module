@@ -22,7 +22,7 @@ Disclaimer : Code is opensource and can be modified by everyone. If you can impr
 #include <espnow.h>
 #include <Wire.h>
 #include <VL6180X_WE.h>
-#include <VL6180X.h>
+/* #include <VL6180X.h> */
 
 
 /******************************** TRAINING MODE SELECTION ******************************/
@@ -103,7 +103,7 @@ enum TRAINING_COUNTERMODE_en {
 TRAINING_COUNTERMODE_en TRAINING_COUNTERMODE_selection;
 void trainingCounterModeMain(void);
 void setupTrainingCounterMode(void);
-VL6180X sensor;
+/* VL6180X sensor; */
 uint8_t TRAINING_COUNTERMODE_pushUpCounter = 0;
 bool TRAINING_COUNTERMODE_flagUp = false;
 bool TRAINING_COUNTERMODE_flagDown = false;
@@ -548,7 +548,7 @@ void initTOFSensor(void) {
   delay(500);
   TOFsensor.VL6180xDefautSettings();                         //Load default settings to get started.
   delay(500);                                                //do i really need this here
-  /*replaceValueHere*/ TOFsensor.VL6180xSetDistInt(20, 20);  //it detects a movement when it lower than 2cm. With the current initialization should work for values up until 20cm .
+  /*replaceValueHere*/ TOFsensor.VL6180xSetDistInt(50, 255);  //it detects a movement when it lower than 2cm. With the current initialization should work for values up until 20cm .
   TOFsensor.getDistanceContinously();
   TOFsensor.VL6180xClearInterrupt();
   intrerruptTOF = false;
@@ -804,7 +804,7 @@ void endOfTrainingCounter(void) {
   pixels.clear();
   pixels.show();
   delay(500);
-  distanceVal = sensor.readRangeSingleMillimeters();
+  distanceVal = TOFsensor.getDistance();
   if (distanceVal < 100) {
     TRAINING_COUNTERMODE_restartCounterTraining++;
   }
@@ -1413,9 +1413,9 @@ void trainingCounterModeMain(void) {
 
   uint16_t distanceVal;
   if (TRAINING_COUNTERMODE_pushUpCounter < training_counterMode_setReps) {
-    distanceVal = sensor.readRangeSingleMillimeters();
+    distanceVal = TOFsensor.getDistance();
 
-    if (sensor.timeoutOccurred()) { Serial.print(" TIMEOUT"); }
+    /* if (TOFsensor.timeoutOccurred()) { Serial.print(" TIMEOUT"); } */
 
     delay(100);
 
@@ -1876,10 +1876,9 @@ bool TRAINING_changeDistanceFunction(void) {
 }
 
 void setupTrainingCounterMode(void) {
-  sensor.init();
-  sensor.configureDefault();
-  sensor.setScaling(2);
-  sensor.setTimeout(500);
+  TOFsensor.VL6180xInit();
+  TOFsensor.VL6180xDefaultSettings();
+
 }
 
 bool TRAINING_CounterModeSetReps(void) {
