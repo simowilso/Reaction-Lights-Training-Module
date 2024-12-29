@@ -22,7 +22,7 @@ Disclaimer : Code is opensource and can be modified by everyone. If you can impr
 #include <espnow.h>
 #include <Wire.h>
 #include <VL6180X_WE.h>
-#include <VL6180X.h>
+/* #include <VL6180X.h> */
 
 
 /******************************** TRAINING MODE SELECTION ******************************/
@@ -70,7 +70,7 @@ ICACHE_RAM_ATTR void onTimerInt() {
 #define MACADDRESSSIZE 6                       //Mac address size
 #define NO_ECU 0                               //No ecu with the define MY_ECU 0
 #define RGBCLEARDELAY 100                      //delay to be used with RGB clear ?TBD
-  /*replaceValueHere*/ #define AVAILABLEECU 4  //Nr of ECUs to be used
+  /*replaceValueHere*/ #define AVAILABLEECU 2  //Nr of ECUs to be used
 #define MAXAVAILABLEECU 10                     // I think ESPNOW supports up to 10 devices
 
   //Receivers ECUS addreses.Add all of them here.
