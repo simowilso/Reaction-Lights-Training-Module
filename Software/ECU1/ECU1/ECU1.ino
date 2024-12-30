@@ -229,7 +229,7 @@ uint8_t counterExercise = 0;
 #define MACADDRESSSIZE 6                       //Mac address size
 #define NO_ECU 0                               //No ecu with the define MY_ECU 0
 #define RGBCLEARDELAY 100                      //delay to be used with RGB clear ?TBD
-  /*replaceValueHere*/ #define AVAILABLEECU 2  //Nr of ECUs to be used
+  /*replaceValueHere*/ #define AVAILABLEECU 3  //Nr of ECUs to be used
 #define MAXAVAILABLEECU 10                     // I think ESPNOW supports up to 10 devices
 
   //Receivers ECUS addreses.Add all of them here.
