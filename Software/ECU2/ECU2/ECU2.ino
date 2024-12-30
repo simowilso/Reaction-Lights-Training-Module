@@ -70,7 +70,7 @@ ICACHE_RAM_ATTR void onTimerInt() {
 #define MACADDRESSSIZE 6                       //Mac address size
 #define NO_ECU 0                               //No ecu with the define MY_ECU 0
 #define RGBCLEARDELAY 100                      //delay to be used with RGB clear ?TBD
-  /*replaceValueHere*/ #define AVAILABLEECU 3  //Nr of ECUs to be used
+  /*replaceValueHere*/ #define AVAILABLEECU 5  //Nr of ECUs to be used
 #define MAXAVAILABLEECU 10                     // I think ESPNOW supports up to 10 devices
 
   //Receivers ECUS addreses.Add all of them here.
@@ -78,8 +78,8 @@ ICACHE_RAM_ATTR void onTimerInt() {
   /*replaceValueHere*/ uint8_t receiverAddress1[] = { 0x40, 0xF5, 0x20, 0x33, 0xDA, 0xF9 };  //  this ECU MAC address ,only for example purposes
                                                                                              // /*replaceValueHere*/ uint8_t receiverAddress2[] = { 0xEC, 0xFA, 0xBC, 0x01, 0xA0, 0xA8 };  //  ECU 2
 /*replaceValueHere*/ uint8_t receiverAddress3[] = { 0x3C, 0x61, 0x05, 0xED, 0x2A, 0xB6 };    //  ECU 3
-/*replaceValueHere*/ uint8_t receiverAddress4[] = { 0xF4, 0xCF, 0xA2, 0x79, 0x23, 0x84 };    //  ECU 4
-// /*replaceValueHere*/ uint8_t receiverAddress5[] = { 0x4C, 0xEB, 0xD6, 0x62, 0x09, 0x54 };    //  ECU 5
+/*replaceValueHere*/ uint8_t receiverAddress4[] = { 0x2C, 0xF4, 0x32, 0x65, 0x97, 0xD4 };    //  ECU 4
+// /*replaceValueHere*/ uint8_t receiverAddress5[] = { 0x2C, 0xF4, 0x32, 0x65, 0x8C, 0xCC };    //  ECU 5
 
 uint8_t receiverECU_Address[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };  //Placeholder for the receiver address
 
