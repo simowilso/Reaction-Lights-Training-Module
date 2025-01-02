@@ -228,7 +228,7 @@ uint8_t counterExercise = 0;
 #define MACADDRESSSIZE 6                       //Mac address size
 #define NO_ECU 0                               //No ecu with the define MY_ECU 0
 #define RGBCLEARDELAY 100                      //delay to be used with RGB clear ?TBD
-  /*replaceValueHere*/ #define AVAILABLEECU 5  //Nr of ECUs to be used
+  /*replaceValueHere*/ #define AVAILABLEECU 3  //Nr of ECUs to be used
 #define MAXAVAILABLEECU 10                     // I think ESPNOW supports up to 10 devices
 
   //Receivers ECUS addreses.Add all of them here.
@@ -435,7 +435,8 @@ float mapfloat(float x, float in_min, float in_max, float out_min, float out_max
 
 void readBatValue(void) {
   analogVal = analogRead(BATMEAS);
-  /*replaceValueHere*/ float voltage = (((analogVal * 3.3) / 1024) * 1.54);  //1.54 is the constant for me , check out with the multimeter and set the right value for you (trial&error) until correct
+  Serial.println(analogVal);
+  /*replaceValueHere*/ float voltage = (((analogVal * 3.3) / 1024) * 2.76);  //1.54 is the constant for me , check out with the multimeter and set the right value for you (trial&error) until correct
   bat_percentage = mapfloat(voltage, 3, 4.2, 0, 100);                        //Real Value
 
   if (bat_percentage >= 100) {
@@ -540,7 +541,7 @@ void initTOFSensor(void) {
   attachInterrupt(digitalPinToInterrupt(TOF_INT), handleInterruptTOF, FALLING);
 
   delay(100);  //do i really need this here
-  while (TOFsensor.VL6180xInit() == VL6180x_FAILURE_RESET) {
+  if (TOFsensor.VL6180xInit() != 0) {
     Serial.println("FAILED TO INITALIZE");  //Initialize device and check for errors
     ESP.restart();
   }
@@ -551,7 +552,7 @@ void initTOFSensor(void) {
   TOFsensor.getDistanceContinously();
   TOFsensor.VL6180xClearInterrupt();
   intrerruptTOF = false;
-  //delay(500);  //do i really need this here
+  delay(500);  //do i really need this here
 }
 /******************************** TOF SENSOR CODE  ******************************/
 
