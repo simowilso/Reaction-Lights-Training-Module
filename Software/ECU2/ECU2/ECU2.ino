@@ -22,7 +22,6 @@ Disclaimer : Code is opensource and can be modified by everyone. If you can impr
 #include <espnow.h>
 #include <Wire.h>
 #include <VL6180X_WE.h>
-/* #include <VL6180X.h> */
 
 
 /******************************** TRAINING MODE SELECTION ******************************/
