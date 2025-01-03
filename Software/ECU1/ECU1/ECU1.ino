@@ -540,12 +540,12 @@ void initTOFSensor(void) {
   pinMode(TOF_INT, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(TOF_INT), handleInterruptTOF, FALLING);
 
-  delay(100);  //do i really need this here
+  delay(1000);  //do i really need this here
   if (TOFsensor.VL6180xInit() != 0) {
     Serial.println("FAILED TO INITALIZE");  //Initialize device and check for errors
     ESP.restart();
   }
-  delay(500);
+  /* delay(500); */
   TOFsensor.VL6180xDefautSettings();                         //Load default settings to get started.
   delay(500);                                                //do i really need this here
   /*replaceValueHere*/ TOFsensor.VL6180xSetDistInt(50, 255);  //it detects a movement when it lower than 2cm. With the current initialization should work for values up until 20cm .
@@ -1042,7 +1042,7 @@ void sendSettingsData(void) {
 
 void setup() {
   Serial.begin(115200);     // initialize serial port
-                            // Wire.begin(SDA_PIN, SCL_PIN);  //Initialize I2C for VL6180x (TOF Sensor)
+  Wire.begin(SDA_PIN, SCL_PIN);  //Initialize I2C for VL6180x (TOF Sensor)
   pinMode(BATMEAS, INPUT);  //measure Battery Pin
 
   timer1_attachInterrupt(onTimerInt);  // Add ISR Function
