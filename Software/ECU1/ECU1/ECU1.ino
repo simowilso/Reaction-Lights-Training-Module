@@ -1043,6 +1043,10 @@ void sendSettingsData(void) {
 void setup() {
   Serial.begin(115200);     // initialize serial port
   Wire.begin(SDA_PIN, SCL_PIN);  //Initialize I2C for VL6180x (TOF Sensor)
+ 
+  Serial.println("initTOFSensor");
+  initTOFSensor();
+ 
   pinMode(BATMEAS, INPUT);  //measure Battery Pin
 
   timer1_attachInterrupt(onTimerInt);  // Add ISR Function
@@ -1057,9 +1061,6 @@ void setup() {
   pixels.show();
   Serial.println("initESPNOWcomm");
   initESPNOWcomm();
-
-  Serial.println("initTOFSensor");
-  initTOFSensor();
   Serial.println("initBatteryCheck");
   initBatteryCheck();
   Serial.println("almost Ready");
