@@ -545,11 +545,13 @@ void initTOFSensor(void) {
     Serial.println("FAILED TO INITALIZE");  //Initialize device and check for errors
     ESP.restart();
   }
-  /* delay(500); */
+  delay(500);
   TOFsensor.VL6180xDefautSettings();                         //Load default settings to get started.
   delay(500);                                                //do i really need this here
   /*replaceValueHere*/ TOFsensor.VL6180xSetDistInt(50, 255);  //it detects a movement when it lower than 2cm. With the current initialization should work for values up until 20cm .
+  delay(500);
   TOFsensor.getDistanceContinously();
+  delay(500);
   TOFsensor.VL6180xClearInterrupt();
   intrerruptTOF = false;
   delay(500);  //do i really need this here
