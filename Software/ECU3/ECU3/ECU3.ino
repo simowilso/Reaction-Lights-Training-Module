@@ -267,7 +267,7 @@ float mapfloat(float x, float in_min, float in_max, float out_min, float out_max
 
 void readBatValue(void) {
   analogVal = analogRead(BATMEAS);
-  /*replaceValueHere*/ float voltage = (((analogVal * 3.3) / 1024) * 1.54);  //1.54 is the constant for me , check out with the multimeter and set the right value for you (trial&error) until correct
+  /*replaceValueHere*/ float voltage = (((analogVal * 3.3) / 1024) * 2.09);  //1.54 is the constant for me , check out with the multimeter and set the right value for you (trial&error) until correct
   bat_percentage = mapfloat(voltage, 3, 4.2, 0, 100);                        //Real Value
 
   if (bat_percentage >= 100) {
