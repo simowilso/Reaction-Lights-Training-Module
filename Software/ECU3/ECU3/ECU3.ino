@@ -340,6 +340,8 @@ void showBatteryPercentage(void) {
 void initBatteryCheck(void) {
   readBatValue();
   showBatteryPercentage();
+  delay(1000);
+  clearRGBcolors();
 }
 /******************************** BATTERY CHECK CODE  ******************************/
 
