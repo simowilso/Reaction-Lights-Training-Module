@@ -807,6 +807,7 @@ void endOfTrainingCounter(void) {
   pixels.show();
   delay(500);
   distanceVal = TOFsensor.getDistance();
+  Serial.println("Distance #2 called!");
   if (distanceVal < 100) {
     TRAINING_COUNTERMODE_restartCounterTraining++;
   }
@@ -1417,6 +1418,7 @@ void trainingCounterModeMain(void) {
   uint16_t distanceVal;
   if (TRAINING_COUNTERMODE_pushUpCounter < training_counterMode_setReps) {
     distanceVal = TOFsensor.getDistance();
+    Serial.println("distance #1 called!");
 
     /* if (TOFsensor.timeoutOccurred()) { Serial.print(" TIMEOUT"); } */
 
