@@ -22,6 +22,7 @@ Disclaimer : Code is opensource and can be modified by everyone. If you can impr
 #include <espnow.h>
 #include <Wire.h>
 #include <VL6180X_WE.h>
+#include <Adafruit_VL6180X.h>
 
 
 /******************************** TRAINING MODE SELECTION ******************************/
@@ -523,6 +524,7 @@ void initBatteryCheck(void) {
 
 VL6180xIdentification identification;
 VL6180x TOFsensor(VL6180X_ADDRESS);
+Adafruit_VL6180X v1 = Adafruit_VL6180X();
 
 volatile bool intrerruptTOF = false;
 volatile int resTOFflag = 0;
@@ -541,12 +543,12 @@ void initTOFSensor(void) {
   attachInterrupt(digitalPinToInterrupt(TOF_INT), handleInterruptTOF, FALLING);
 
   delay(1000);  //do i really need this here
-  if (TOFsensor.VL6180xInit() != 0) {
-    Serial.println("FAILED TO INITALIZE");  //Initialize device and check for errors
-    ESP.restart();
+  if (! v1.begin()) {
+    Serial.println("Failed to find sensor");
+    while (1);
   }
-  delay(500);
-  TOFsensor.VL6180xDefautSettings();                         //Load default settings to get started.
+  Serial.println("Sensor found!");
+
   delay(500);                                                //do i really need this here
   /*replaceValueHere*/ TOFsensor.VL6180xSetDistInt(50, 255);  //it detects a movement when it lower than 2cm. With the current initialization should work for values up until 20cm .
   delay(500);
